@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/providers/theme-provider";
 import { QueryProvider } from "@/components/ui/providers/query-provider";
+import {ClerkProvider} from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+        <ClerkProvider>
         <QueryProvider>
           <ThemeProvider
             attribute="class"
@@ -37,6 +39,7 @@ export default function RootLayout({ children }) {
             {children}
           </ThemeProvider>
         </QueryProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
